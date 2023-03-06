@@ -52,12 +52,13 @@ while guess != 0:
                   + "Three: Port " + str(value3) + "\n"
                   + "Four: Port " + str(value4) + "\n"
                   + "Type 0 to exit"
-                    "\nWhich port is your guess?\n "
-                    "Answer is: ")
+                  + "\nWhich port is your guess?\n "
+                  + "Answer is: ")
 
     if guess == value:
         print("Congratulations, your right!")
         portpoints += 1
+        print("Your Current Score: " + str(portpoints))
     elif guess == 0:
         break
     else:
@@ -65,4 +66,5 @@ while guess != 0:
               "The correct answer is " + value)
         portpoints -= 1
 
-    print("Total Points: " + str(portpoints))
+print("Quiz Over")
+print("Total Score: " + str(portpoints))
