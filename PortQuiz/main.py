@@ -30,27 +30,33 @@ while guess != 0:
         three: value3,
         four: value4
     }
-
-    one = random.choice(shuffledvalues)
+    if value == value2 or value3 or value4:
+        value = random.choice(list(PortDictInformation.portDict.keys()))
+    elif value2 == value or value3 or value4:
+        value2 = random.choice(list(PortDictInformation.portDict.keys()))
+    elif value3 == value or value2 or value4:
+        value3 = random.choice(list(PortDictInformation.portDict.keys()))
+    elif value4 == value or value2 or value3:
+        value4 = random.choice(list(PortDictInformation.portDict.keys()))
 
     if one == PortDictInformation.portDict.keys():
         shuffledvalues.pop(one)
+        one = -1
     elif two == PortDictInformation.portDict.keys():
         shuffledvalues.pop(two)
+        two = -1
     elif three == PortDictInformation.portDict.keys():
         shuffledvalues.pop(three)
-    else:
+        three = -1
+    elif four == PortDictInformation.portDict.keys():
         shuffledvalues.pop(four)
+        four = -1
 
-   # two = random.choice(shuffledvalues)
-   # three = random.choice(shuffledvalues)
-   # four = random.choice(shuffledvalues)
-
-    guess = input("Type What you believe is the correct port or ports for " + portinfo + ":\n"
-                  + "One: Port " + str(value) + "\n"
-                  + "Two: Port " + str(value2) + "\n"
-                  + "Three: Port " + str(value3) + "\n"
-                  + "Four: Port " + str(value4) + "\n"
+    guess = input("Which of the following ports is used by " + portinfo + ":\n"
+                  + "Port " + str(value) + "\n"
+                  + "Port " + str(value2) + "\n"
+                  + "Port " + str(value3) + "\n"
+                  + "Port " + str(value4) + "\n"
                   + "Type 0 to exit"
                   + "\nWhich port is your guess?\n "
                   + "Answer is: ")
@@ -65,6 +71,7 @@ while guess != 0:
         print("\nYour choice was not correct.\n"
               "The correct answer is " + value)
         portpoints -= 1
+        print("Your Current Score: " + str(portpoints))
 
 print("Quiz Over")
 print("Total Score: " + str(portpoints))
