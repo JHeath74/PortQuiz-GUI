@@ -12,6 +12,7 @@ portDict = {
     "88": "Kerberos",
     "110": "POP3",
     "119": "NNTP",
+    "123": "NTP",
     "135": "RPC",
     "137": "Net-Bios",
     "138": "Net-Bios",
