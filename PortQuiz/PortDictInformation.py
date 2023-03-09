@@ -3,6 +3,7 @@ portDict = {
     "22": "SSH",
     "23": "Telnet",
     "25": "SMTP",
+    "37": "Time",
     "49": "TACACS+",
     "53": "DNS",
     "67": "DHCP",
