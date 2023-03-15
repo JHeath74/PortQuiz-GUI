@@ -4,7 +4,8 @@ import PortDictInformation
 
 portpoints = 0
 guess = -1
-# file_name = ""
+correct = 0
+incorrect = 0
 
 
 playername = input("Please Enter your name and press the enter key: ")
@@ -61,14 +62,16 @@ while guess != 0:
 						+ "\nWhich port is your guess?\n"
 						+ "Answer is: ")
 
-	if guess == 0:
-		final_score()
+	if guess == "0":
+		#final_score()
 		break
 
 	elif guess == value:
 		print("Congratulations, your right!")
 		portpoints += 1
+		correct += 1
 		print("Your Current Score: " + str(portpoints))
+		shuffledvalues.clear()
 		print("______________________________________")
 		print("______________________________________")
 
@@ -76,9 +79,13 @@ while guess != 0:
 		print("\nYour choice was not correct.\n"
 		"The correct answer is " + value)
 		portpoints -= 1
+		incorrect += 1
+		shuffledvalues.clear()
 		print("Your Current Score: " + str(portpoints))
 		print("______________________________________")
 		print("______________________________________")
 
 print("Quiz Over")
 print("Total Score: " + str(portpoints))
+print("Number of correct guesses: " + str(correct))
+print("Number of incorrect guesses: " + str(incorrect))
