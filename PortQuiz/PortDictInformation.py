@@ -48,3 +48,6 @@ portDict = {
     "6514": "Syslog over TLS"
 
 }
+
+CorrectAnswersPortDict = {}
+IncorrectAnswersPortDict = {}

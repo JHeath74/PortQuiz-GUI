@@ -1,30 +1,19 @@
 import random
 
-import PortDictInformation
+from PortQuiz import PortDictInformation, PortQuizAwards
 
+guess = 1
 portpoints = 0
-guess = -1
 correct = 0
 incorrect = 0
-
-
-playername = input("Please Enter your name and press the enter key: ")
-
-
-def final_score():
-	file_name = playername + "Score" + ".txt"
-
-	print("Printing your award certificate: " + file_name)
-
-	awardtext = "Congratulations\n" \
-				+ "Name: " + playername + "\n" \
-				+ "Final Score: " + str(portpoints)
-
-	final_score_award = open(file_name, "w")
-	final_score_award.write(awardtext)
-
+newvalue = 0
+newvalue2 = 0
+newvalue3 = 0
+newvalue4 = 0
 
 shuffledvalues = {}
+
+playername = input("Please Enter your name and press the enter key: ")
 
 while guess != 0:
 
@@ -51,19 +40,31 @@ while guess != 0:
 	newvalue3 = random.choice(list(shuffledvalues.keys()))
 	shuffledvalues.pop(newvalue3)
 	newvalue4 = random.choice(list(shuffledvalues.keys()))
-	shuffledvalues.pop(newvalue4)
+	shuffledvalues.clear()
+
+	# Traceback (most recent call last):
+	#  File "C:\Backup\Github\PortQuiz\PortQuiz\main.py", line 3, in <module>
+	#    from PortQuiz import PortDictInformation, PortQuizAwards
+	#  File "C:\Backup\Github\PortQuiz\PortQuiz\PortQuizAwards.py", line 1, in <module>
+	#    from PortQuiz import main, PortDictInformation
+	#  File "C:\Backup\Github\PortQuiz\PortQuiz\main.py", line 43, in <module>
+	#    newvalue4 = random.choice(list(shuffledvalues.keys()))
+	#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	#  File "C:\Users\jheat\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
+	#    raise IndexError('Cannot choose from an empty sequence')
+	#    IndexError: Cannot choose from an empty sequence
 
 	guess = input("Which of the following ports is used by " + portinfo + ":\n"
-						+ "Port: " + str(newvalue) + "\n"
-						+ "Port: " + str(newvalue2) + "\n"
-						+ "Port: " + str(newvalue3) + "\n"
-						+ "Port: " + str(newvalue4) + "\n"
-						+ "Type 0 to exit\n"
-						+ "\nWhich port is your guess?\n"
-						+ "Answer is: ")
+				+ "Port: " + str(newvalue) + "\n"
+				+ "Port: " + str(newvalue2) + "\n"
+				+ "Port: " + str(newvalue3) + "\n"
+				+ "Port: " + str(newvalue4) + "\n"
+				+ "Type 0 to exit\n"
+				+ "\nWhich port is your guess?\n"
+				+ "Answer is: ")
 
 	if guess == "0":
-		#final_score()
+		PortQuizAwards.CorrectIncorrectResponses()
 		break
 
 	elif guess == value:
@@ -71,21 +72,26 @@ while guess != 0:
 		portpoints += 1
 		correct += 1
 		print("Your Current Score: " + str(portpoints))
+		PortDictInformation.CorrectAnswersPortDict["guess"] = "portinfo"
 		shuffledvalues.clear()
 		print("______________________________________")
 		print("______________________________________")
 
 	else:
 		print("\nYour choice was not correct.\n"
-		"The correct answer is " + value)
+			  "The correct answer is " + value)
 		portpoints -= 1
 		incorrect += 1
+		PortDictInformation.IncorrectAnswersPortDict["guess"] = "portinfo"
+
 		shuffledvalues.clear()
 		print("Your Current Score: " + str(portpoints))
 		print("______________________________________")
 		print("______________________________________")
 
-print("Quiz Over")
-print("Total Score: " + str(portpoints))
-print("Number of correct guesses: " + str(correct))
-print("Number of incorrect guesses: " + str(incorrect))
+	print("Quiz Over")
+	print("Total Score: " + str(portpoints))
+	print("Number of correct guesses: " + str(correct))
+	print("Number of incorrect guesses: " + str(incorrect))
+
+
