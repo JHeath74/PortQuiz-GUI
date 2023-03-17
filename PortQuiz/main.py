@@ -12,6 +12,8 @@ newvalue3 = 0
 newvalue4 = 0
 
 shuffledvalues = {}
+CorrectAnswersPortDict = {}
+IncorrectAnswersPortDict = {}
 
 playername = input("Please Enter your name and press the enter key: ")
 
@@ -42,18 +44,6 @@ while guess != 0:
 	newvalue4 = random.choice(list(shuffledvalues.keys()))
 	shuffledvalues.clear()
 
-	# Traceback (most recent call last):
-	#  File "C:\Backup\Github\PortQuiz\PortQuiz\main.py", line 3, in <module>
-	#    from PortQuiz import PortDictInformation, PortQuizAwards
-	#  File "C:\Backup\Github\PortQuiz\PortQuiz\PortQuizAwards.py", line 1, in <module>
-	#    from PortQuiz import main, PortDictInformation
-	#  File "C:\Backup\Github\PortQuiz\PortQuiz\main.py", line 43, in <module>
-	#    newvalue4 = random.choice(list(shuffledvalues.keys()))
-	#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	#  File "C:\Users\jheat\AppData\Local\Programs\Python\Python311\Lib\random.py", line 373, in choice
-	#    raise IndexError('Cannot choose from an empty sequence')
-	#    IndexError: Cannot choose from an empty sequence
-
 	guess = input("Which of the following ports is used by " + portinfo + ":\n"
 				+ "Port: " + str(newvalue) + "\n"
 				+ "Port: " + str(newvalue2) + "\n"
@@ -64,7 +54,7 @@ while guess != 0:
 				+ "Answer is: ")
 
 	if guess == "0":
-		PortQuizAwards.CorrectIncorrectResponses()
+		#PortQuizAwards.CorrectIncorrectResponses()
 		break
 
 	elif guess == value:
@@ -72,7 +62,7 @@ while guess != 0:
 		portpoints += 1
 		correct += 1
 		print("Your Current Score: " + str(portpoints))
-		PortDictInformation.CorrectAnswersPortDict["guess"] = "portinfo"
+		CorrectAnswersPortDict["guess"] = "portinfo"
 		shuffledvalues.clear()
 		print("______________________________________")
 		print("______________________________________")
@@ -82,7 +72,7 @@ while guess != 0:
 			  "The correct answer is " + value)
 		portpoints -= 1
 		incorrect += 1
-		PortDictInformation.IncorrectAnswersPortDict["guess"] = "portinfo"
+		IncorrectAnswersPortDict["guess"] = "portinfo"
 
 		shuffledvalues.clear()
 		print("Your Current Score: " + str(portpoints))

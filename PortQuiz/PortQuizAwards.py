@@ -1,4 +1,4 @@
-from PortQuiz import PortDictInformation
+from PortQuiz import main
 
 
 def CorrectIncorrectResponses():
@@ -12,21 +12,22 @@ def CorrectIncorrectResponses():
 		if response == 0:
 			break
 		if response == 1:
-			for CorrectAnswers in PortDictInformation.CorrectAnswersPortDict:
+			for CorrectAnswers in main.CorrectAnswersPortDict:
 				print(CorrectAnswers)
 
 		if response == 2:
-			for IncorrectAnswers in PortDictInformation.IncorrectAnswersPortDict:
+			for IncorrectAnswers in main.IncorrectAnswersPortDict:
 				print(IncorrectAnswers)
 
-# def final_score():
-#	file_name = main.playername + "Score" + ".txt"
-#
-#	print("Printing your award certificate: " + file_name)
-#
-#	awardtext = "Congratulations\n" \
-#				+ "Name: " + main.playername + "\n" \
-#				+ "Final Score: " + str(main.portpoints) + "\n"\
-#
-#	final_score_award = open(file_name, "w")
-#	final_score_award.write(awardtext)
+
+def final_score():
+	file_name = main.playername + "Score" + ".txt"
+
+	print("Printing your award certificate: " + file_name)
+
+	awardtext = "Congratulations\n" \
+				+ "Name: " + main.playername + "\n" \
+				+ "Final Score: " + str(main.portpoints) + "\n"\
+
+	final_score_award = open(file_name, "w")
+	final_score_award.write(awardtext)
