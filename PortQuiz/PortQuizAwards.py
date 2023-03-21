@@ -1,7 +1,8 @@
-from PortQuiz import main
+import self
 
-
-def CorrectIncorrectResponses():
+CorrectAnswersPortDict = {}
+IncorrectAnswersPortDict = {}
+def CorrectIncorrectResponses(self):
 	response = 0
 
 	while response != 0:
@@ -10,24 +11,25 @@ def CorrectIncorrectResponses():
 						 + "2 for Incorrect Answers\n"
 						 + "0 for Exit")
 		if response == 0:
+			final_score()
 			break
 		if response == 1:
-			for CorrectAnswers in main.CorrectAnswersPortDict:
+			for CorrectAnswers in CorrectAnswersPortDict:
 				print(CorrectAnswers)
 
 		if response == 2:
-			for IncorrectAnswers in main.IncorrectAnswersPortDict:
+			for IncorrectAnswers in IncorrectAnswersPortDict:
 				print(IncorrectAnswers)
 
 
 def final_score():
-	file_name = main.playername + "Score" + ".txt"
+	file_name = self.playername + "Score" + ".txt"
 
 	print("Printing your award certificate: " + file_name)
 
 	awardtext = "Congratulations\n" \
-				+ "Name: " + main.playername + "\n" \
-				+ "Final Score: " + str(main.portpoints) + "\n"\
+				+ "Name: " + self.playername + "\n" \
+				+ "Final Score: " + str(self.portpoints) + "\n"\
 
 	final_score_award = open(file_name, "w")
 	final_score_award.write(awardtext)
