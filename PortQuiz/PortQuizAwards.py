@@ -2,7 +2,7 @@ import self
 
 CorrectAnswersPortDict = {}
 IncorrectAnswersPortDict = {}
-def CorrectIncorrectResponses(self):
+def CorrectIncorrectResponses(playername):
 	response = 0
 
 	while response != 0:
@@ -11,7 +11,7 @@ def CorrectIncorrectResponses(self):
 						 + "2 for Incorrect Answers\n"
 						 + "0 for Exit")
 		if response == 0:
-			final_score()
+			final_score(playername)
 			break
 		if response == 1:
 			for CorrectAnswers in CorrectAnswersPortDict:
@@ -22,8 +22,8 @@ def CorrectIncorrectResponses(self):
 				print(IncorrectAnswers)
 
 
-def final_score():
-	file_name = self.playername + "Score" + ".txt"
+def final_score(playername):
+	file_name = playername + "Score" + ".txt"
 
 	print("Printing your award certificate: " + file_name)
 
