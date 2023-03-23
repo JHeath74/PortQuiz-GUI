@@ -44,20 +44,22 @@ while guess != 0:
 		shuffledvalues.pop(newvalue3)
 		newvalue4 = random.choice(list(shuffledvalues.keys()))
 
-		print("New Value" + str(newvalue4))
 		shuffledvalues.clear()
 
+		if newvalue4 is None:
+			newvalue4 = random.choice(list(shuffledvalues.keys()))
+
 		guess = input("Which of the following ports is used by " + portinfo + ":\n"
-					  + "Port: " + str(newvalue) + "\n"
-					  + "Port: " + str(newvalue2) + "\n"
-					  + "Port: " + str(newvalue3) + "\n"
-					  + "Port: " + str(newvalue4) + "\n"
-					  + "Type 0 to exit\n"
-					  + "\nWhich port is your guess?\n"
-					  + "Answer is: ")
+				+ "Port: " + str(newvalue) + "\n"
+				+ "Port: " + str(newvalue2) + "\n"
+				+ "Port: " + str(newvalue3) + "\n"
+				+ "Port: " + str(newvalue4) + "\n"
+				+ "Type 0 to exit\n"
+				+ "\nWhich port is your guess?\n"
+				+ "Answer is: ")
 
 		if guess == "0":
-			PortQuizAwards.CorrectIncorrectResponses(playername)
+			PortQuizAwards.CorrectIncorrectResponses(playername, portpoints)
 			break
 
 		elif guess == value:
