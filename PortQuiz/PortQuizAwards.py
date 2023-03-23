@@ -25,10 +25,17 @@ def CorrectIncorrectResponses(playername, portpoints):
 def final_score(playername, portpoints):
 	file_name = playername + "Score" + ".txt"
 
-	print("Printing your award certificate: " + file_name)
+	print("Saving your award certificate: " + file_name)
+
+
 
 	awardtext = "Congratulations\n" \
 				+ "Name: " + playername + "\n" \
 				+ "Final Score: " + str(portpoints) + "\n"
 	final_score_award = open(file_name, "w")
+
+	for line in CorrectAnswersPortDict:
+		final_score_award.write("%s\n" % line)
+
+
 	final_score_award.write(awardtext)
