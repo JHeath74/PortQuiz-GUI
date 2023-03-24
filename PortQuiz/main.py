@@ -47,13 +47,13 @@ while guess != 0:
 	shuffledvalues.clear()
 
 	guess = input("Which of the following ports is used by " + portinfo + ":\n"
-				+ "Port: " + str(newvalue) + "\n"
-				+ "Port: " + str(newvalue2) + "\n"
-				+ "Port: " + str(newvalue3) + "\n"
-				+ "Port: " + str(newvalue4) + "\n"
-				+ "Type 0 to exit\n"
-				+ "\nWhich port is your guess?\n"
-				+ "Answer is: ")
+				  + "Port: " + str(newvalue) + "\n"
+				  + "Port: " + str(newvalue2) + "\n"
+				  + "Port: " + str(newvalue3) + "\n"
+				  + "Port: " + str(newvalue4) + "\n"
+				  + "Type 0 to exit\n"
+				  + "\nWhich port is your guess?\n"
+				  + "Answer is: ")
 
 	if guess == "0":
 		PortQuizAwards.CorrectIncorrectResponses(playername, portpoints)
@@ -67,7 +67,7 @@ while guess != 0:
 		PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
 
 		for i in PortQuizAwards.CorrectAnswersPortDict:
-			print("Values: " + i)
+			print("Values: " + i + "Port Info: ", portinfo)
 
 		shuffledvalues.clear()
 		print("______________________________________")
@@ -75,10 +75,15 @@ while guess != 0:
 
 	else:
 		print("\nYour choice was not correct.\n"
-			"The correct answer is " + value)
+			  "The correct answer is " + value)
 		portpoints -= 1
 		incorrect += 1
 		PortQuizAwards.IncorrectAnswersPortDict[guess] = portinfo
+
+		for i in PortQuizAwards.IncorrectAnswersPortDict:
+			print("Values: " + i +
+				"\nPort Info: ", portinfo)
+
 		shuffledvalues.clear()
 		print("Your Current Score: " + str(portpoints))
 		print("______________________________________")

@@ -1,9 +1,8 @@
 Congratulations, Kyle
-Name: Kyle
 Final Score: 0
 
 Correct Answers
-Port: 989, 990
+Port: 21, Protocol: 
 
 Incorrect Answers
-Port: 23
+Port: 135, Protocol: 
