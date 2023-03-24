@@ -41,10 +41,10 @@ while guess != 0:
 	shuffledvalues.pop(newvalue3)
 	newvalue4 = random.choice(list(shuffledvalues.keys()))
 
-	shuffledvalues.clear()
-
 	if newvalue4 is None:
 		newvalue4 = random.choice(list(shuffledvalues.keys()))
+
+	shuffledvalues.clear()
 
 	guess = input("Which of the following ports is used by " + portinfo + ":\n"
 				+ "Port: " + str(newvalue) + "\n"
@@ -64,7 +64,11 @@ while guess != 0:
 		portpoints += 1
 		correct += 1
 		print("Your Current Score: " + str(portpoints))
-		PortQuizAwards.CorrectAnswersPortDict[guess] = "portinfo"
+		PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+
+		for i in PortQuizAwards.CorrectAnswersPortDict:
+			print("Values: " + i)
+
 		shuffledvalues.clear()
 		print("______________________________________")
 		print("______________________________________")
@@ -74,7 +78,7 @@ while guess != 0:
 			"The correct answer is " + value)
 		portpoints -= 1
 		incorrect += 1
-		PortQuizAwards.IncorrectAnswersPortDict[guess] = "portinfo"
+		PortQuizAwards.IncorrectAnswersPortDict[guess] = portinfo
 		shuffledvalues.clear()
 		print("Your Current Score: " + str(portpoints))
 		print("______________________________________")

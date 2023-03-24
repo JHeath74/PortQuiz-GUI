@@ -15,11 +15,11 @@ def CorrectIncorrectResponses(playername, portpoints):
 			break
 		if response == "1":
 			for CorrectAnswers in CorrectAnswersPortDict:
-				print(CorrectAnswers)
+				print("Port: " + CorrectAnswers)
 
 		if response == "2":
 			for IncorrectAnswers in IncorrectAnswersPortDict:
-				print(IncorrectAnswers)
+				print("Port: " + IncorrectAnswers)
 
 
 def final_score(playername, portpoints):
@@ -27,15 +27,20 @@ def final_score(playername, portpoints):
 
 	print("Saving your award certificate: " + file_name)
 
-
-
-	awardtext = "Congratulations\n" \
+	awardtext = "Congratulations, " + playername + "\n" \
 				+ "Name: " + playername + "\n" \
 				+ "Final Score: " + str(portpoints) + "\n"
 	final_score_award = open(file_name, "w")
 
-	for line in CorrectAnswersPortDict:
-		final_score_award.write("%s\n" % line)
-
-
 	final_score_award.write(awardtext)
+
+	final_score_award.write("\nCorrect Answers\n")
+
+	for line in CorrectAnswersPortDict:
+		final_score_award.write("Port: %s\n" % line)
+
+	final_score_award.write("\nIncorrect Answers\n")
+
+	for line in IncorrectAnswersPortDict:
+		final_score_award.write("Port: %s\n" % line)
+
