@@ -1,8 +1,8 @@
 Congratulations, Kyle
-Final Score: 0
+Final Score: 2
 
 Correct Answers
-Port: 21, Protocol: 
+Port:1645, 1646 Portocol: RADIUS (alternative)
+Port:49 Portocol: TACACS+
 
 Incorrect Answers
-Port: 135, Protocol: 
