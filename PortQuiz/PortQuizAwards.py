@@ -9,19 +9,19 @@ def CorrectIncorrectResponses(playername, portpoints):
 		response = input("Do you wish to see the correct or incorrect answers?\n"
 						+ "1 for Correct Answers\n"
 						+ "2 for Incorrect Answers\n"
-						+ "0 for Exit")
+						+ "0 for Exit\n")
 		if response == "0":
 			final_score(playername, portpoints)
 			break
 		if response == "1":
 			print("Correct Guesses")
 			for key, value in CorrectAnswersPortDict.items():
-				print("Port: {} Portocol: {}\n".format(key, value))
+				print("Port: {} - Portocol: {}\n".format(key, value))
 
 		if response == "2":
 			print("Incorrect Guesses")
 			for key, value in IncorrectAnswersPortDict.items():
-				print("Port:{} Portocol: {}\n".format(key, value))
+				print("Port:{} - Portocol: {}\n".format(key, value))
 
 
 def final_score(playername, portpoints):
@@ -38,11 +38,10 @@ def final_score(playername, portpoints):
 	final_score_award.write("\nCorrect Answers\n")
 
 	for key, value in CorrectAnswersPortDict.items():
-		final_score_award.write("Port:{} Portocol: {}\n".format(key, value))
+		final_score_award.write("Port:{} - Portocol: {}\n".format(key, value))
 
 	final_score_award.write("\nIncorrect Answers\n")
 
 	for key, value in IncorrectAnswersPortDict.items():
-		final_score_award.write("Port:{} Portocol: {}\n".format(key, value))
-		#final_score_award.write("Port: %s, Protocol: %s\n".format(key, value))
+		final_score_award.write("Port:{} - Portocol: {}\n".format(key, value))
 
