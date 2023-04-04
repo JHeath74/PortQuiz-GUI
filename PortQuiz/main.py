@@ -4,6 +4,8 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QLabel, QPlainTextEdit
 from PyQt5.QtCore import pyqtSlot
 
+from PortQuiz.PortQuizProgram import PortQuizProgram
+
 
 class PortQuiz(QWidget):
 
@@ -14,6 +16,7 @@ class PortQuiz(QWidget):
 		self.setFixedHeight(700)
 		self.setFixedWidth(1300)
 		self.initUI()
+		PortQuizProgram.PortQuiz(self)
 
 	def initUI(self):
 		self.setWindowTitle(self.title)
@@ -43,6 +46,24 @@ class PortQuiz(QWidget):
 		Port4.move(650, 500)
 		Port4.resize(200, 100)
 		Port4.clicked.connect(self.Port_4_on_click)
+
+		exit = QPushButton('Exit:', self)
+		exit.setToolTip('Exit Program')
+		exit.move(50, 600)
+		exit.resize(200, 100)
+		exit.clicked.connect(self.exit_program)
+
+		showCorrectAnswers = QPushButton('Show Correct Answers:', self)
+		showCorrectAnswers.setToolTip('Show Correct Answers')
+		showCorrectAnswers.move(250, 600)
+		showCorrectAnswers.resize(250, 100)
+		showCorrectAnswers.clicked.connect(self.showCorrectAnswers)
+
+		showIncorrectAnswers = QPushButton('Show Incorrect Answers:', self)
+		showIncorrectAnswers.setToolTip('Show inCorrect Answers')
+		showIncorrectAnswers.move(500, 600)
+		showIncorrectAnswers.resize(250, 100)
+		showIncorrectAnswers.clicked.connect(self.showIncorrectAnswers)
 
 		# Number of Correct Answers Box
 		# Width,  then Height
@@ -79,7 +100,11 @@ class PortQuiz(QWidget):
 		self.DisplayQuestionField.move(50, 50)
 		self.DisplayQuestionField.resize(800, 425)
 
+
+
 		self.show()
+
+
 
 	@pyqtSlot()
 	def Port_1_on_click(self):
@@ -97,8 +122,20 @@ class PortQuiz(QWidget):
 	def Port_4_on_click(self):
 		print('Port 4')
 
+	@pyqtSlot()
+	def showCorrectAnswers(self):
+		exit()
+	@pyqtSlot()
+	def showIncorrectAnswers(self):
+		exit()
+	@pyqtSlot()
+	def exit_program(self):
+		exit()
+
+
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
 	ex = PortQuiz()
 	sys.exit(app.exec_())
+
