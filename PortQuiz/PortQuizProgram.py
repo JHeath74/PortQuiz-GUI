@@ -6,28 +6,29 @@ from PyQt5.QtCore import QDir
 from PyQt5.QtWidgets import QInputDialog, QLineEdit
 
 
-
 class PortQuizProgram:
 
-	def PortQuiz(self):
-		guess = -1
-		portpoints = 0
-		correct = 0
-		incorrect = 0
-		newvalue = 0
-		newvalue2 = 0
-		newvalue3 = 0
-		newvalue4 = 0
+	def __int__(self):
+		self.guess = -1
+		self.portpoints = 0
+		self.correct = 0
+		self.incorrect = 0
+		self.newvalue = 0
+		self.newvalue2 = 0
+		self.newvalue3 = 0
+		self.newvalue4 = 0
 
+
+	def PortQuiz(self):
 		shuffledvalues = {}
 
 		playername = QInputDialog().getText(self, "Enter Name",
-												 "Your name:", QLineEdit.Normal,
-												 QDir().home().dirName())
+											"Your name:", QLineEdit.Normal,
+											QDir().home().dirName())
 
 		self.DisplayQuestionField.setPlainText('Welcome: ' + str(playername))
 
-		#while guess != 0:
+		# while guess != 0:
 
 		self.DisplayQuestionField.appendPlainText('')
 		self.DisplayQuestionField.appendPlainText('				Port Quiz')
@@ -64,12 +65,18 @@ class PortQuizProgram:
 
 		self.DisplayQuestionField.appendPlainText('')
 		self.DisplayQuestionField.appendPlainText("Which of the following ports is used by " + portinfo + ":\n"
-					  + "Port: " + str(newvalue) + "\n"
-					  + "Port: " + str(newvalue2) + "\n"
-					  + "Port: " + str(newvalue3) + "\n"
-					  + "Port: " + str(newvalue4) + "\n"
-					  + "\nWhich port is your guess?\n"
-					  + "Answer is: ")
+												  + "Port: " + str(newvalue) + "\n"
+												  + "Port: " + str(newvalue2) + "\n"
+												  + "Port: " + str(newvalue3) + "\n"
+												  + "Port: " + str(newvalue4) + "\n"
+												  + "\nClick the button below with the port "
+													"that has your guess?\n")
 
+		def returnValues(self, newvalue, newvalue2, newvalue3, newvalue4):
 
-
+			print("newvalue: " + newvalue)
+			self.newvalue = newvalue
+			self.newvalue2 = newvalue2
+			self.newvalue3 = newvalue3
+			self.newvalue4 = newvalue4
+			pass

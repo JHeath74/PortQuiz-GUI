@@ -1,16 +1,17 @@
 import sys
 
-
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QLabel, QPlainTextEdit
 from PyQt5.QtCore import pyqtSlot
 
+from PortQuiz.PortQuizAwards import CorrectAnswersPortDict, IncorrectAnswersPortDict
 from PortQuiz.PortQuizProgram import PortQuizProgram
 
 
 class PortQuiz(QWidget):
-
+	PortQuizProgram.returnvalues()
 	def __init__(self):
 		super().__init__()
+
 		self.title = 'Port Quiz'
 
 		self.setFixedHeight(700)
@@ -21,9 +22,7 @@ class PortQuiz(QWidget):
 	def initUI(self):
 		self.setWindowTitle(self.title)
 
-		# Width,  then Height
-
-		Port1 = QPushButton('Port 1:', self)
+		Port1 = QPushButton(f"Port 1: ", self)
 		Port1.setToolTip('Answer Choice 1')
 		Port1.move(50, 500)
 		Port1.resize(200, 100)
@@ -100,16 +99,11 @@ class PortQuiz(QWidget):
 		self.DisplayQuestionField.move(50, 50)
 		self.DisplayQuestionField.resize(800, 425)
 
-
-
 		self.show()
-
-
 
 	@pyqtSlot()
 	def Port_1_on_click(self):
-		print('Port 1')
-
+		print('Port 2')
 	@pyqtSlot()
 	def Port_2_on_click(self):
 		print('Port 2')
@@ -124,18 +118,27 @@ class PortQuiz(QWidget):
 
 	@pyqtSlot()
 	def showCorrectAnswers(self):
-		exit()
+		for x in CorrectAnswersPortDict:
+			print('Correct' + x)
+
 	@pyqtSlot()
 	def showIncorrectAnswers(self):
-		exit()
+		for x in IncorrectAnswersPortDict:
+			print('Incorrect' + x)
+
 	@pyqtSlot()
 	def exit_program(self):
 		exit()
 
+	def variables(self):
+		#value1 = self.newvalue
+		#value2 = self.newvalue2
+		#value3 = self.newvalue3
+		#value4 = self.newvalue4
+		pass
 
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
 	ex = PortQuiz()
 	sys.exit(app.exec_())
-
