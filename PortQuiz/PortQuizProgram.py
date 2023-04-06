@@ -13,11 +13,14 @@ class PortQuizProgram:
 		self.portpoints = 0
 		self.correct = 0
 		self.incorrect = 0
+		self.value = 0
+		self.value2 = 0
+		self.value3 = 0
+		self.value4 = 0
 		self.newvalue = 0
 		self.newvalue2 = 0
 		self.newvalue3 = 0
 		self.newvalue4 = 0
-
 
 	def PortQuiz(self):
 		shuffledvalues = {}
@@ -30,7 +33,6 @@ class PortQuizProgram:
 
 		# while guess != 0:
 
-		self.DisplayQuestionField.appendPlainText('')
 		self.DisplayQuestionField.appendPlainText('				Port Quiz')
 		self.DisplayQuestionField.appendPlainText('You''ll be given a protocol'
 												  ' and have to guess the correct'
@@ -65,18 +67,9 @@ class PortQuizProgram:
 
 		self.DisplayQuestionField.appendPlainText('')
 		self.DisplayQuestionField.appendPlainText("Which of the following ports is used by " + portinfo + ":\n"
-												  + "Port: " + str(newvalue) + "\n"
-												  + "Port: " + str(newvalue2) + "\n"
-												  + "Port: " + str(newvalue3) + "\n"
-												  + "Port: " + str(newvalue4) + "\n"
-												  + "\nClick the button below with the port "
+												+ "Port: " + str(newvalue) + "\n"
+												+ "Port: " + str(newvalue2) + "\n"
+												+ "Port: " + str(newvalue3) + "\n"
+												+ "Port: " + str(newvalue4) + "\n"
+												+ "\nClick the button below with the port "
 													"that has your guess?\n")
-
-		def returnValues(self, newvalue, newvalue2, newvalue3, newvalue4):
-
-			print("newvalue: " + newvalue)
-			self.newvalue = newvalue
-			self.newvalue2 = newvalue2
-			self.newvalue3 = newvalue3
-			self.newvalue4 = newvalue4
-			pass
