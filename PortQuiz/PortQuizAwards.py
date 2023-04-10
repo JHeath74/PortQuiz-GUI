@@ -1,3 +1,5 @@
+import ctypes
+
 CorrectAnswersPortDict = {}
 IncorrectAnswersPortDict = {}
 
@@ -16,18 +18,24 @@ def CorrectIncorrectResponses(playername, portpoints):
 		if response == "1":
 			print("Correct Guesses")
 			for key, value in CorrectAnswersPortDict.items():
-				print("Port: {} - Portocol: {}\n".format(key, value))
+				#print("Port: {} - Portocol: {}\n".format(key, value))
+				ctypes.windll.user32.MessageBoxW(0, "Port: {} - Portocol: {}\n".format(key, value), "Correct Guesses", 1)
+
 
 		if response == "2":
 			print("Incorrect Guesses")
 			for key, value in IncorrectAnswersPortDict.items():
-				print("Port:{} - Portocol: {}\n".format(key, value))
+				#print("Port:{} - Portocol: {}\n".format(key, value))
+				ctypes.windll.user32.MessageBoxW(0, "Port: {} - Portocol: {}\n".format(key, value), "Incorrect Guesses",1)
 
 
 def final_score(playername, portpoints):
 	file_name = playername + "Score" + ".txt"
 
-	print("Saving your award certificate: " + file_name)
+	#print("Saving your award certificate: " + file_name)
+
+	 # An included library with Python install.
+	ctypes.windll.user32.MessageBoxW(0, "Saving your award certificate: " + file_name, "Game Over", 1)
 
 	awardtext = "Congratulations, " + playername + "\n" \
 				+ "Final Score: " + str(portpoints) + "\n"
