@@ -1,6 +1,5 @@
 import random
 import sys
-import time
 
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QLabel, QPlainTextEdit, QInputDialog
 from PyQt5.QtCore import pyqtSlot, QDir
@@ -21,12 +20,11 @@ class PortQuiz(QWidget):
 		self.value2 = 0
 		self.value3 = 0
 		self.value4 = 0
-		self.newvalue = 0
-		self.newvalue2 = 0
-		self.newvalue3 = 0
-		self.newvalue4 = 0
+		newvalue = 0
+		newvalue2 = 0
+		newvalue3 = 0
+		newvalue4 = 0
 
-		self.DisplayQuestionField = None
 
 		self.Score = QLineEdit(self)
 		self.Score.setText("0")
@@ -45,30 +43,30 @@ class PortQuiz(QWidget):
 
 		self.setFixedHeight(700)
 		self.setFixedWidth(1300)
-		self.initUI()
+		self.initUI(newvalue, newvalue2, newvalue3, newvalue4)
 
-	def initUI(self):
+	def initUI(self, newvalue, newvalue2, newvalue3, newvalue4):
 		self.setWindowTitle(self.title)
 
-		port1 = QPushButton("Port 1: %s " % self.newvalue, self)
+		port1 = QPushButton("Port 1: %s " % newvalue, self)
 		port1.setToolTip('Answer Choice 1')
 		port1.move(50, 500)
 		port1.resize(200, 100)
 		port1.clicked.connect(self.Port_1_on_click)
 
-		port2 = QPushButton('Port 2: %d ' % self.newvalue2, self)
+		port2 = QPushButton('Port 2: %s ' % newvalue2, self)
 		port2.setToolTip('Answer Choice 2')
 		port2.move(250, 500)
 		port2.resize(200, 100)
 		port2.clicked.connect(self.Port_2_on_click)
 
-		port3 = QPushButton('Port 3: %d ' % self.newvalue3, self)
+		port3 = QPushButton('Port 3: %s ' % newvalue3, self)
 		port3.setToolTip('Answer Choice 3')
 		port3.move(450, 500)
 		port3.resize(200, 100)
 		port3.clicked.connect(self.Port_3_on_click)
 
-		port4 = QPushButton("Port 4: %d" % self.newvalue4, self)
+		port4 = QPushButton("Port 4: %s" % newvalue4, self)
 		port4.setToolTip('Answer Choice 4')
 		port4.move(650, 500)
 		port4.resize(200, 100)
@@ -84,13 +82,13 @@ class PortQuiz(QWidget):
 		showCorrectAnswers.setToolTip('Show Correct Answers')
 		showCorrectAnswers.move(250, 600)
 		showCorrectAnswers.resize(250, 100)
-		showCorrectAnswers.clicked.connect(self.showCorrectAnswers)
+		showCorrectAnswers.clicked.connect(self.showAnswersCorrect)
 
 		showIncorrectAnswers = QPushButton('Show Incorrect Answers:', self)
 		showIncorrectAnswers.setToolTip('Show inCorrect Answers')
 		showIncorrectAnswers.move(500, 600)
 		showIncorrectAnswers.resize(250, 100)
-		showIncorrectAnswers.clicked.connect(self.showIncorrectAnswers)
+		showIncorrectAnswers.clicked.connect(self.showAnswersIncorrect)
 
 		# Number of Correct Answers Box
 		# Width,  then Height
@@ -124,10 +122,9 @@ class PortQuiz(QWidget):
 		self.show()
 		self.PortQuiz()
 
+
+
 	def PortQuiz(self):
-
-
-		shuffledvalues = {}
 
 		playername = QInputDialog().getText(self, "Enter Name",
 											"Your name:", QLineEdit.Normal,
@@ -135,7 +132,9 @@ class PortQuiz(QWidget):
 
 		self.DisplayQuestionField.setPlainText('Welcome: ' + str(playername))
 
-		# while guess != 0:
+	#while guess != 0:
+
+		shuffledvalues = {}
 
 		self.DisplayQuestionField.appendPlainText('				Port Quiz')
 		self.DisplayQuestionField.appendPlainText('You''ll be given a protocol'
@@ -169,7 +168,12 @@ class PortQuiz(QWidget):
 
 		shuffledvalues.clear()
 
-		self.refreshButton()
+		port1 = QPushButton("Port 1: %s " % newvalue, self)
+		port2 = QPushButton("Port 2: %s " % newvalue2, self)
+		port3 = QPushButton("Port 3: %s " % newvalue3, self)
+		port4 = QPushButton("Port 4: %s " % newvalue4, self)
+
+		#self.refreshButton(newvalue, newvalue2, newvalue3, newvalue4)
 
 		self.DisplayQuestionField.appendPlainText('')
 		self.DisplayQuestionField.appendPlainText("Which of the following ports is used by " + portinfo + ":\n"
@@ -180,91 +184,89 @@ class PortQuiz(QWidget):
 												+ "\nClick the button below with the port "
 													"that has your guess?\n")
 
-		print("New Values" + str(newvalue))
-
-
 
 	@pyqtSlot()
-	def Port_1_on_click(self):
-		if self.newvalue == self.value:
-			self.portpoints += 1
-			self.correct += 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+	def Port_1_on_click(self, newvalue, value, portpoints, correct, Score, NumberofCorrectAnswers, NumberofIncorrectAnswers, guess, portinfo):
+		if newvalue == value:
+			portpoints += 1
+			correct += 1
+			Score.setText(portpoints)
+			NumberofCorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
+
 		else:
-			self.portpoints -= 1
-			self.correct -= 1
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+			portpoints -= 1
+			correct -= 1
+			NumberofIncorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 
 	@pyqtSlot()
-	def Port_2_on_click(self):
-		if self.newvalue2 == self.value:
-			self.portpoints += 1
-			self.correct += 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+	def Port_2_on_click(self, newvalue2, value, portpoints, correct, Score, NumberofCorrectAnswers, NumberofIncorrectAnswers, guess, portinfo):
+		if newvalue2 == value:
+			portpoints += 1
+			correct += 1
+			Score.setText(portpoints)
+			NumberofCorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 		else:
-			self.portpoints -= 1
-			self.correct -= 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+			portpoints -= 1
+			correct -= 1
+			Score.setText(portpoints)
+			NumberofIncorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 
 	@pyqtSlot()
-	def Port_3_on_click(self):
-		if self.newvalue3 == self.value:
-			self.portpoints += 1
-			self.correct += 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+	def Port_3_on_click(self, newvalue3, value, portpoints, correct, Score, NumberofCorrectAnswers, NumberofIncorrectAnswers, guess, portinfo):
+		if newvalue3 == value:
+			portpoints += 1
+			correct += 1
+			Score.setText(portpoints)
+			NumberofCorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 		else:
-			self.portpoints -= 1
-			self.correct -= 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+			portpoints -= 1
+			correct -= 1
+			Score.setText(portpoints)
+			NumberofIncorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 
 	@pyqtSlot()
-	def Port_4_on_click(self):
-		if self.newvalue4 == self.value:
-			self.portpoints += 1
-			self.correct += 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+	def Port_4_on_click(self, newvalue4, value, portpoints, correct, Score, NumberofCorrectAnswers, NumberofIncorrectAnswers, guess, portinfo):
+		if newvalue4 == value:
+			portpoints += 1
+			correct += 1
+			Score.setText(portpoints)
+			NumberofCorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 		else:
-			self.portpoints -= 1
-			self.correct -= 1
-			self.Score.setText(self.portpoints)
-			self.NumberofCorrectAnswers.setText(self.correct)
-			PortQuizAwards.CorrectAnswersPortDict[self.guess] = self.portinfo
+			portpoints -= 1
+			correct -= 1
+			Score.setText(portpoints)
+			NumberofIncorrectAnswers.setText(correct)
+			PortQuizAwards.CorrectAnswersPortDict[guess] = portinfo
+			self.refreshButton()
 
 	@pyqtSlot()
-	def showCorrectAnswers(self):
+	def showAnswersCorrect(self):
 		PortQuizAwards.CorrectAnswersPortDict.items()
 		for key, value in PortQuizAwards.CorrectAnswersPortDict.items():
 			self.DisplayQuestionField.setPlainText("Port: {} - Portocol: {}\n".format(key, value))
 
 	@pyqtSlot()
-	def showIncorrectAnswers(self):
+	def showAnswersIncorrect(self):
 		for key, value in PortQuizAwards.IncorrectAnswersPortDict.items():
 			self.DisplayQuestionField.setPlainText("Port: {} - Portocol: {}\n".format(key, value))
 
 	@pyqtSlot()
 	def exit_program(self):
 		exit()
-
-	def refreshButton(self):
-			port1 = QPushButton("Port 1: %d " % self.newvalue, self)
-			port2 = QPushButton("Port 2: %d " % self.newvalue2, self)
-			port3 = QPushButton("Port 3: %d " % self.newvalue3, self)
-			port4 = QPushButton("Port 4: %d " % self.newvalue4, self)
-
-
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
