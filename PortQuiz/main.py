@@ -20,10 +20,10 @@ class PortQuiz(QWidget):
 		self.value2 = 0
 		self.value3 = 0
 		self.value4 = 0
-		newvalue = 0
-		newvalue2 = 0
-		newvalue3 = 0
-		newvalue4 = 0
+		self.newvalue = 0;
+		newvalue2 = 0;
+		newvalue3 = 0;
+		newvalue4 = 0;
 
 
 		self.Score = QLineEdit(self)
@@ -43,16 +43,16 @@ class PortQuiz(QWidget):
 
 		self.setFixedHeight(700)
 		self.setFixedWidth(1300)
-		self.initUI(newvalue, newvalue2, newvalue3, newvalue4)
+		self.initUI(self.newvalue, newvalue2, newvalue3, newvalue4)
 
 	def initUI(self, newvalue, newvalue2, newvalue3, newvalue4):
 		self.setWindowTitle(self.title)
 
-		port1 = QPushButton("Port 1: %s " % newvalue, self)
-		port1.setToolTip('Answer Choice 1')
-		port1.move(50, 500)
-		port1.resize(200, 100)
-		port1.clicked.connect(self.Port_1_on_click)
+		self.port1 = QPushButton("Port 1: %s " % self.newvalue, self)
+		self.port1.setToolTip('Answer Choice 1')
+		self.port1.move(50, 500)
+		self.port1.resize(200, 100)
+		self.port1.clicked.connect(self.Port_1_on_click)
 
 		port2 = QPushButton('Port 2: %s ' % newvalue2, self)
 		port2.setToolTip('Answer Choice 2')
@@ -120,11 +120,11 @@ class PortQuiz(QWidget):
 		self.DisplayQuestionField.resize(800, 425)
 
 		self.show()
-		self.PortQuiz()
+		self.PortQuiz(self.port1, port2, port3, port4)
 
 
 
-	def PortQuiz(self):
+	def PortQuiz(self, port1, port2, port3, port4):
 
 		playername = QInputDialog().getText(self, "Enter Name",
 											"Your name:", QLineEdit.Normal,
@@ -168,10 +168,17 @@ class PortQuiz(QWidget):
 
 		shuffledvalues.clear()
 
-		port1 = QPushButton("Port 1: %s " % newvalue, self)
-		port2 = QPushButton("Port 2: %s " % newvalue2, self)
-		port3 = QPushButton("Port 3: %s " % newvalue3, self)
-		port4 = QPushButton("Port 4: %s " % newvalue4, self)
+		#port1 = QPushButton("Port 1: %s " % newvalue, self)
+		#port2 = QPushButton("Port 2: %s " % newvalue2, self)
+		#port3 = QPushButton("Port 3: %s " % newvalue3, self)
+		#port4 = QPushButton("Port 4: %s " % newvalue4, self)
+
+		self.port1.update();
+		port2.update();
+		port3.update();
+		port4.update();
+		print("Port1: " + str(port1));
+		print("New Value: " + str(newvalue))
 
 		#self.refreshButton(newvalue, newvalue2, newvalue3, newvalue4)
 
